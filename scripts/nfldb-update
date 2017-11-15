@@ -26,6 +26,9 @@ if __name__ == '__main__':
        help='When set, ALL game schedules are refreshed from the data in '
             'nflgame. (In normal operation, only the current week\'s schedule '
             'is refreshed.)')
+    aa('--update-turnovers', action='store_true',
+       help='When set, ALL games will have away_turnovers and home_turnovers '
+        'updated with the correct values from NFL.com')
     aa('--batch-size', type=int, default=5,
        help='The number of games to batch before sending data to the '
             'database. In normal operation, this setting will not have much '

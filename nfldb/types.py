@@ -2110,7 +2110,10 @@ class Game (SQLGame):
         dbg.home_score_q3 = g.score_home_q3
         dbg.home_score_q4 = g.score_home_q4
         dbg.home_score_q5 = g.score_home_q5
-        dbg.home_turnovers = int(g.data['home']['to'])
+        try:
+            dbg.home_turnovers = int(g.stats_home.turnovers)
+        except KeyError:
+            dbg.home_turnovers = 0
         dbg.away_team = nfldb.team.standard_team(g.away)
         dbg.away_score = g.score_away
         dbg.away_score_q1 = g.score_away_q1
@@ -2118,7 +2121,10 @@ class Game (SQLGame):
         dbg.away_score_q3 = g.score_away_q3
         dbg.away_score_q4 = g.score_away_q4
         dbg.away_score_q5 = g.score_away_q5
-        dbg.away_turnovers = int(g.data['away']['to'])
+        try:
+            dbg.away_turnovers = int(g.stats_away.turnovers)
+        except KeyError:
+            dbg.away_turnovers = 0
 
         # If it's been 8 hours since game start, we always conclude finished!
         if (now() - dbg.start_time).total_seconds() >= (60 * 60 * 8):
