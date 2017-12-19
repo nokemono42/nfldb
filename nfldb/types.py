@@ -2111,7 +2111,7 @@ class Game (SQLGame):
         dbg.home_score_q4 = g.score_home_q4
         dbg.home_score_q5 = g.score_home_q5
         try:
-            dbg.home_turnovers = int(g.stats_home.turnovers)
+            dbg.home_turnovers = int(g.data['home']['stats']['team']['trnovr'])
         except KeyError:
             dbg.home_turnovers = 0
         dbg.away_team = nfldb.team.standard_team(g.away)
@@ -2122,7 +2122,7 @@ class Game (SQLGame):
         dbg.away_score_q4 = g.score_away_q4
         dbg.away_score_q5 = g.score_away_q5
         try:
-            dbg.away_turnovers = int(g.stats_away.turnovers)
+            dbg.away_turnovers = int(g.data['away']['stats']['team']['trnovr'])
         except KeyError:
             dbg.away_turnovers = 0
 
